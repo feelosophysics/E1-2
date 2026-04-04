@@ -5,6 +5,13 @@ class Quiz:
         self.choices = choices
         self.answer = answer
 
+        # [추가] 퀴즈 한 문제를 화면에 보여주는 메서드
+    def display(self, index):
+        print(f"\n----------------------------------------")
+        print(f"[문제 {index}] {self.question}")
+        for i, choice in enumerate(self.choices, 1):
+            print(f"{i}. {choice}")
+
 class QuizGame:
     def __init__(self):
         self.quizzes = []
@@ -12,6 +19,42 @@ class QuizGame:
 
     def add_quiz(self, quiz):
         self.quizzes.append(quiz)
+
+        # [추가] 전체 퀴즈를 진행하는 메서드
+    def play(self):
+        if not self.quizzes:
+            print("\n⚠️ 등록된 퀴즈가 없습니다. 퀴즈를 먼저 추가해 주세요!")
+            return
+
+        print(f"\n📝 퀴즈를 시작합니다! (총 {len(self.quizzes)}문제)")
+        score = 0
+
+        for i, quiz in enumerate(self.quizzes, 1):
+            quiz.display(i) # 퀴즈 보여주기
+            
+            # 정답 입력 받기 및 예외 처리
+            while True:
+                user_input = input("정답 번호 입력 (1-4): ").strip()
+                if user_input in ['1', '2', '3', '4']:
+                    break
+                print("⚠️ 1에서 4 사이의 숫자만 입력해 주세요.")
+            
+            # 정답 확인
+            if int(user_input) == quiz.answer:
+                print("✅ 정답입니다!")
+                score += 1
+            else:
+                print(f"❌ 오답입니다. (정답: {quiz.answer}번)")
+
+        # 결과 출력
+        print("\n" + "="*40)
+        print(f"🏆 결과: {len(self.quizzes)}문제 중 {score}문제 정답!")
+        
+        # 최고 점수 갱신 (나중에 파일 저장할 때 사용)
+        if score > self.best_score:
+            self.best_score = score
+            print("🎉 새로운 최고 점수입니다!")
+        print("="*40)
 
 # [2] 실제 동작할 로직(함수)을 정의합니다.
 def main():
@@ -47,11 +90,11 @@ def main():
                 print(f"⚠️ '{choice}'은 잘못된 입력입니다.")
                 continue
 
-            if choice == '5':
+            if choice == '1':
+                game.play()  # 퀴즈 풀기 시작!
+            elif choice == '5':
                 print("👋 게임을 종료합니다!")
                 break
-            elif choice == '1':
-                print("✨ [퀴즈 풀기] 기능을 구현할 차례입니다!")
             elif choice == '2':
                 print("✨ [퀴즈 추가] 기능을 구현할 차례입니다!")
             elif choice == '3':
