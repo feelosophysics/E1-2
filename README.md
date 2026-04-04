@@ -25,4 +25,4 @@ python main.py
 
 # 데이터 파일 설명(state.json 등)
 - quizzes: 퀴즈 객체들의 리스트 (질문, 선택지, 정답 포함)
-- best_score: 플레이어의 최고 점수 기록
+- best_score: 플레이어의 최고 점수 기록이 프로젝트는 Git 실습을 위해 작성되었습니다.
