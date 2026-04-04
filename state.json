@@ -60,6 +60,16 @@
                 "don't know"
             ],
             "answer": 3
+        },
+        {
+            "question": "고양이의 이름은?",
+            "choices": [
+                "고양이",
+                "야옹",
+                "meow",
+                "meovv"
+            ],
+            "answer": 1
         }
     ]
 }

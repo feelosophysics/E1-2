@@ -24,7 +24,13 @@ python main.py
 - .gitignore: Git 관리 제외 설정
 
 # 데이터 파일 설명(state.json 등)
-- quizzes: 퀴즈 객체들의 리스트 (질문, 선택지, 정답 포함)
-- best_score: 플레이어의 최고 점수 기록
+- 경로: 프로젝트 루트 디렉토리 (./state.json)
+- 역할: 프로그램을 종료해도 퀴즈 목록과 사용자의 최고 점수를 유지하기 위한 데이터 저장소
+- 필드 구조 (Schema):
+  - best_score: (Number) 사용자가 기록한 최고 정답 수
+  - quizzes: (Array) 퀴즈 객체들이 담긴 리스트
+    - question: (String) 문제 내용
+    - choices: (Array) 4개의 선택지 문구
+    - answer: (Number) 정답 번호 (1~4)
 
 # 이 프로젝트는 Git 실습을 위해 작성되었습니다.
