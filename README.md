@@ -1,10 +1,9 @@
 # 🎯 나만의 퀴즈 게임 (Python Quiz Game)
 
-Python 기초 문법과 Git을 활용하여 만든 터미널 기반 퀴즈 게임입니다.
-
 ## 📝 프로젝트 개요
+Python 기초 문법과 Git을 활용하여 만든 터미널 기반 퀴즈 게임입니다.
 - **퀴즈 주제**: 파이썬 기초 및 프로그래밍 상식
-- **선정 이유**: 파이썬 학습을 갓 시작한 입장에서 가장 복습이 필요한 내용을 퀴즈로 만들어 학습 효과를 높이고자 했습니다.
+- **퀴즈 주제 선정 이유**: 파이썬 학습을 갓 시작한 입장에서 가장 복습이 필요한 내용을 퀴즈로 만들어 학습 효과를 높이고자 했습니다.
 
 ## 🚀 실행 방법
 ```bash
@@ -37,6 +36,70 @@ python main.py
 
 ----------
 
+```mermaid
+flowchart TD
+
+
+    Start([프로그램 시작]) --> ImportModules[라이브러리 임포트<br/>json, os]
+    ImportModules --> DefineClasses[클래스 정의<br/>Quiz, QuizGame]
+    DefineClasses --> MainStart[main 함수 실행]
+    MainStart --> CreateGame[QuizGame 객체 생성]
+    CreateGame --> LoadData[load_data 호출]
+    LoadData --> FileExists{파일이<br/>존재하는가?}
+    FileExists -->|No| SetDefault[기본 5개 퀴즈 로드]
+    FileExists -->|Yes| ReadFile[JSON 파일에서<br/>데이터 읽기]
+    SetDefault --> SaveDefault[데이터 저장]
+    ReadFile --> CheckFile{파일이<br/>손상되었는가?}
+    CheckFile -->|Yes| SetDefault
+    CheckFile -->|No| LoadSuccess[데이터 로드 완료]
+    SaveDefault --> MenuLoop[메인 메뉴 표시]
+    LoadSuccess --> MenuLoop
+    MenuLoop --> UserChoice{사용자<br/>선택}
+    UserChoice -->|1| PlayGame[play 함수]
+    UserChoice -->|2| AddQuiz[add_new_quiz_menu 함수]
+    UserChoice -->|3| ListQuiz[list_quizzes 함수]
+    UserChoice -->|4| ShowScore[최고 점수 표시]
+    UserChoice -->|5| ExitGame[프로그램 종료]
+    UserChoice -->|기타| ShowError[오류 메시지]
+    PlayGame --> DisplayQuiz[퀴즈 화면에 표시]
+    DisplayQuiz --> InputAnswer{사용자<br/>정답 입력}
+    InputAnswer -->|1~4 범위 밖| RetryInput[다시 입력 요청]
+    RetryInput --> InputAnswer
+    InputAnswer -->|1~4 범위 내| CheckAnswer{정답<br/>일치?}
+    CheckAnswer -->|Yes| CorrectMsg[정답 메시지<br/>점수 +1]
+    CheckAnswer -->|No| IncorrectMsg[오답 메시지<br/>정답 표시]
+    CorrectMsg --> MoreQuiz{더 많은<br/>퀴즈?}
+    IncorrectMsg --> MoreQuiz
+    MoreQuiz -->|Yes| DisplayQuiz
+    MoreQuiz -->|No| ShowResult[최종 결과 표시]
+    ShowResult --> BestScore{최고 점수<br/>갱신?}
+    BestScore -->|Yes| UpdateBest[최고 점수 갱신<br/>데이터 저장]
+    BestScore -->|No| BackToMenu[메뉴로 돌아가기]
+    UpdateBest --> BackToMenu
+    AddQuiz --> InputQuestion[문제 입력]
+    InputQuestion --> InputChoices[선택지 4개 입력]
+    InputChoices --> InputAnswer2{정답<br/>입력}
+    InputAnswer2 -->|1~4 범위 밖| RetryAnswer[다시 입력 요청]
+    RetryAnswer --> InputAnswer2
+    InputAnswer2 -->|1~4 범위 내| CreateQuiz[Quiz 객체 생성]
+    CreateQuiz --> AddToList[퀴즈 리스트에 추가]
+    AddToList --> SaveQuiz[데이터 저장]
+    SaveQuiz --> BackToMenu
+    ListQuiz --> ShowList[모든 퀴즈 제목 표시]
+    ShowList --> BackToMenu
+    ShowScore --> BackToMenu
+    ShowError --> BackToMenu
+    BackToMenu --> MenuLoop
+    ExitGame --> FinalSave[최종 데이터 저장]
+    FinalSave --> End([프로그램 종료])
+    style Start fill:#90EE90
+    style End fill:#FFB6C6
+    style PlayGame fill:#87CEEB
+    style AddQuiz fill:#87CEEB
+    style ListQuiz fill:#87CEEB
+    style MenuLoop fill:#FFD700
+```
+    
 # 💡 기술적 의사결정 및 학습 메모 (과제 목표 설명)
 
 ### 1. 클래스 설계와 책임 분리 (객체 지향)
