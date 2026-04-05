@@ -36,6 +36,8 @@ python main.py
 
 ----------
 
+# phthon code 로직 흐름
+
 ```mermaid
 flowchart TD
 
