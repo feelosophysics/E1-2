@@ -1,5 +1,5 @@
 {
-    "best_score": 3,
+    "best_score": 0,
     "quizzes": [
         {
             "question": "파이썬의 창시자는 누구일까요?",
@@ -68,6 +68,16 @@
                 "야옹",
                 "meow",
                 "meovv"
+            ],
+            "answer": 1
+        },
+        {
+            "question": "정재윤",
+            "choices": [
+                "잘생겼다",
+                "못생겼다",
+                "잘났다",
+                "운동잘함"
             ],
             "answer": 1
         }

@@ -68,6 +68,7 @@ class QuizGame:
                 # ensure_ascii=False: 역시 한글 깨짐 방지용. indent=4: 엔터를 쳐서 예쁘게 정렬해 줍니다.
                 json.dump(data, f, ensure_ascii=False, indent=4)
         except Exception as e:
+
             # try 안에서 뭔가 에러가 나면 프로그램이 죽지 않고 이곳으로 와서 에러 이유(e)를 알려줍니다.
             print(f"\n⚠️ 저장 중 오류 발생: {e}")
 
@@ -210,7 +211,7 @@ def main():
                 print(f"⚠️ '{choice}'은(는) 잘못된 입력입니다.")
 
     # 사용자가 강제로 Ctrl+C를 눌러서 끄려고 할 때, 빨간 에러 대신 이걸 실행합니다.
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, EOFError):
         game.save_data() # 끄기 전에 지금까지의 상황을 안전하게 저장해 둡니다.
         print("\n\n🛑 안전하게 종료되었습니다.")
 
