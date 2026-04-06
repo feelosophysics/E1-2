@@ -18,7 +18,7 @@ python main.py
 5. 데이터 영속성: 모든 데이터는 state.json에 저장되어 재시작해도 유지됩니다.
 
 # 파일 구조
-- main.py: 게임 로직 및 클래스 정의 (Quiz, QuizGame)
+- main.py: 게임 로직 및 클래스 정의를 포함한 전체 파이썬 코드 (Quiz, QuizGame)
 - state.json: 퀴즈 데이터 및 최고 점수 저장 파일
 - .gitignore: Git 관리 제외 설정
 
@@ -149,3 +149,5 @@ flowchart TD
 3. git_log_branch.png : 10개 이상의 git log와 branch 이력
 4. play_add_score.png : 게임 화면, 퀴즈 추가, 점수 확인.
 5. version.png : python과 git의 버전.
+
+깃허브 저장소 링크 https://github.com/feelosophysics/E1-2
